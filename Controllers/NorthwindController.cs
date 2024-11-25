@@ -79,6 +79,29 @@ namespace EjemploEnClase.Controllers
         {
             return await _repository.ObtenerElEmpleadoMasGrande();
         }
+
+        [HttpGet]
+        [Route("api/CantidadDeEmpleadosPorTitulo")]
+        public async Task<IEnumerable<object>> ObtenerCantidadDeEmpleadosPorTitulo()
+        {
+            return await _repository.ObtenerCantidadDeEmpleadosPorTitulo();
+        }
+
+        [HttpGet]
+        [Route("api/ProductosConCategoria")]
+        
+        public async Task<IEnumerable<object>> ObtenerProductosConCategoria()
+        {
+            return await _repository.ObtenerProductosConCategoria();
+        }
+
+        [HttpGet]
+        [Route("api/ProductosConChef")]
+        
+        public async Task<IEnumerable<object>> ObtenerProductosConChef()
+        {
+            return await _repository.ObtenerProductosConChef();
+        }
     }
 }
 

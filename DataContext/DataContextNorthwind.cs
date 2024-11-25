@@ -11,6 +11,9 @@ namespace EjemploEnClase.DataContext
         }
 
         public DbSet<Employees> Employees { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Products> Products { get; set; }
+
 
     }
 }

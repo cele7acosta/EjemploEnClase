@@ -13,5 +13,8 @@ namespace EjemploEnClase.Repository
         Task<Employees> ObtenerEmpleadoPorPais(string country);
         Task<List<Employees>> ObtenerTodosLosEmpleadosPorPais(string country);
         Task<Employees> ObtenerElEmpleadoMasGrande();
+        Task<IEnumerable<object>> ObtenerCantidadDeEmpleadosPorTitulo();
+        Task<IEnumerable<object>> ObtenerProductosConCategoria();
+        Task<IEnumerable<object>> ObtenerProductosConChef();
     }
 }

@@ -82,5 +82,50 @@ namespace EjemploEnClase.Repository
 
             return await result.FirstOrDefaultAsync();
         }
+
+        // GROUP BY
+        public async Task<IEnumerable<object>> ObtenerCantidadDeEmpleadosPorTitulo()
+        {
+            var result = from emp in _dataContext.Employees
+                         group emp by emp.Title into grouped
+                         select new 
+                         {
+                             Title = grouped.Key,
+                             cantidad = grouped.Count()
+                         };
+
+            return await result.ToListAsync();
+        }
+
+        //INNER JOIN
+
+        public async Task<IEnumerable<object>> ObtenerProductosConCategoria()
+        {
+            var result = from prod in _dataContext.Products
+                         join cat in _dataContext.Categories on prod.CategoryID equals cat.CategoryID
+                         select new
+                         {
+                             Producto = prod.ProductName,
+                             Categoria = cat.CategoryName
+                         };
+
+            return await result.ToListAsync();
+        }
+
+        // LIKE
+
+        public async Task<IEnumerable<object>> ObtenerProductosConChef()
+        {
+            var result = from prod in _dataContext.Products
+                         where prod.ProductName.Contains("chef")
+                         select new
+                         {
+                             Producto = prod.ProductName,
+                             Precio = prod.UnitPrice
+                         };
+
+            return await result.ToListAsync();
+        }
+
     }
 }
