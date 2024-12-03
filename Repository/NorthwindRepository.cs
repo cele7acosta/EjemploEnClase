@@ -127,5 +127,46 @@ namespace EjemploEnClase.Repository
             return await result.ToListAsync();
         }
 
+        public async Task<bool> ModificarNombreEmpleado(int idEmpleado, string nombre)
+        {
+            bool actualizado = false;
+            Employees result = await _dataContext.Employees.Where(r => r.EmployeeID == idEmpleado).FirstOrDefaultAsync();
+
+            if (result != null)
+            {
+                result.FirstName = nombre;
+                var resulta = _dataContext.SaveChanges();
+                actualizado = true;
+            }
+
+            return actualizado;
+        }
+
+        public async Task<bool> EliminarOrdenPorID(int orderID)
+        {
+            Orders? orden = await _dataContext.Orders.Where(r => r.OrderID == orderID).FirstOrDefaultAsync();
+            OrderDetails? ordenDetail = await _dataContext.OrderDetails.Where(r => r.OrderID == orden.OrderID).FirstOrDefaultAsync();
+
+            _dataContext.OrderDetails.Remove(ordenDetail);
+            _dataContext.Orders.Remove(orden);
+
+            var resulta = _dataContext.SaveChanges();
+            return true;
+        }
+
+        public async Task<bool> InsertarEmpleado()
+        {
+            Employees employee = new Employees();
+            employee.Title = "Sales Manager";
+            employee.City = "Rosario";
+            employee.FirstName = "Celeste";
+            employee.LastName = "Acosta";
+            employee.HireDate = DateTime.Now;
+            employee.BirthDate = DateTime.Now;
+            var newEmployee = await _dataContext.AddAsync(employee);
+            var result = _dataContext.SaveChanges();
+
+            return (result > 0);
+        }
     }
 }

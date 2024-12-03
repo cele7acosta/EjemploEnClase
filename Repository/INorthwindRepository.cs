@@ -16,5 +16,8 @@ namespace EjemploEnClase.Repository
         Task<IEnumerable<object>> ObtenerCantidadDeEmpleadosPorTitulo();
         Task<IEnumerable<object>> ObtenerProductosConCategoria();
         Task<IEnumerable<object>> ObtenerProductosConChef();
+        Task<bool> ModificarNombreEmpleado(int idEmpleado, string nombre);
+        Task<bool> EliminarOrdenPorID(int orderID);
+        Task<bool> InsertarEmpleado();
     }
 }
